@@ -13,6 +13,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'HomeController@index')->name('home');
+Route::get('/article/{slug}', 'ArticleController@getArticleBySlug')->name('article.show');
+
+Route::post('/like-form/{id}', 'ArticleController@addCountLike')->name('article.like');
+Route::post('/count-watch/{id}', 'ArticleController@addCountWatch')->name('article.watch');
+Route::post('/comment-form', 'CommentController@addComment')->name('article.comment.add');
+Route::get('/articles/{tag_id?}', 'ArticleController@index')->name('articles.index');
